@@ -1,10 +1,10 @@
-case class Event (
+case class Event(
                   actor: Actor,
-                  created_at: String,
-                  id: Int,
+                  create_at: String,
+                  id: BigInt,
                   org: String,
                   payload: Payload,
-                  public: Boolean,
+                  `public`: Boolean,
                   repo: String,
-                  typeDelEvento: String
-                  )
+                  `type`: String
+                )

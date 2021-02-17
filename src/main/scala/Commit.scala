@@ -1,7 +1,7 @@
 case class Commit (
-                    author: String,
-                    distinct: Boolean,
-                    message: String,
-                    sha: String,
-                    url: String
+                  author: String,
+                  `distinct`: Boolean,
+                  message: String,
+                  sha: String,
+                  url: String
                   )

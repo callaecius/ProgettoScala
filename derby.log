@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-Wed Feb 17 10:03:36 CET 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0177-af3b-033a-000014ad4fa8 
-on database directory /Users/daltoncalder/BigData/ProgettoBigData/ProgettoScala/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@2487e20 
-Loaded from file:/Users/daltoncalder/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
+Wed Feb 17 13:01:23 CET 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0177-afdd-c836-0000119da0e8 
+on database directory /Users/daltoncalder/BigData/ProgettoBigData/ProgettoScala/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@342726f1 
+Loaded from file:/Users/daltoncalder/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_221-b11
 user.dir=/Users/daltoncalder/BigData/ProgettoBigData/ProgettoScala
