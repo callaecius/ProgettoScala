@@ -1,3 +1,5 @@
+package Parser
+
 case class Payload(
                     action: String,
                     before: String,

@@ -1,3 +1,5 @@
+package Parser
+
 case class Actor(
                   avatar_url: String,
                   display_login: String,
