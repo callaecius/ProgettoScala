@@ -1,6 +1,6 @@
 package Parser
 
-case class Payload(
+case class Event(
                     action: String,
                     before: String,
                     comment: String,

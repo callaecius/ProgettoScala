@@ -1,7 +1,8 @@
 package Steaming
 
-import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{SparkConf, SparkContext}
+
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
