@@ -9,8 +9,6 @@ import org.joda.time.DateTime
 import org.apache.spark.sql.catalyst.ScalaReflection.universe.show
 import scala.tools.scalap.scalax.rules.scalasig.ScalaSigEntryParsers.entryType
 
-
-
 object JsonParser {
 
   val conf = new SparkConf().setMaster("local[2]").setAppName("MyTable")
@@ -94,5 +92,20 @@ object JsonParser {
     val rddEventos = rddEvent.map(x => ((x.`type`, x.actor, x.repo), 1L)).reduceByKey((e1,e2) => e1+e2)
     rddEventos.take(10).foreach(println)
 
+    /**********Contare il numero di Event divisi per Type, Attore, Repo e Secondo**********///in dubbio
+    val dfData = new_dfEvent.withColumn("second", second($"created_at"))
+    val dfEventi = dfData.select($"type", $"actor", $"repo", $"second", count($"*").over(Window.partitionBy($"type", $"actor", $"repo", $"second")) as "nEvent")
+    dfEventi.show()
+
+    val rddEventi = rddEvent.map(x=> ((x.`type`, x.actor, x.repo, new DateTime(x.created_at.getTime).getSecondOfMinute), 1L)).reduceByKey((contFrist, contSecond) => contFrist + contSecond)
+    rddEventi.take(10).foreach(println)
+
+    /**********Trovare il massimo diviso minimo numero di Event per Secondo**********/
+    val dfDataMassima = new_dfEvent.withColumn("second", second($"create_at"))
+    val dfEventMassima = dfDataMassima.select($"second", count($"*").over(Window.partitionBy($"second")) as "conteggio")
+    val dfMassimoEvent = dfEventMassima.agg(max("conteggio"))
+    dfMassimoEvent.show()
+    val rddDataMassima = rddEvent.map(x =>(x.actor.id, x)).aggregateByKey(0)((cont, actor) => cont + 1, (contFrist, contSecond) => contFrist + contSecond)
+    val rddDateMax = rddDataMassima.map(x => x._2).max()
   }
 }
