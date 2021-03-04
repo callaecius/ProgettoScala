@@ -73,5 +73,26 @@ object JsonParser {
     val rddRepos = rddEvent.map(x => x.repo).distinct().count()
     println(rddRepos)
 
+    /**********Contare il numero di Event per ogni Attore**********/
+    val dfNumEvent = new_dfEvent.select("actor").count()
+    println(dfNumEvent)
+
+    val rddAct = rddEvent.map(x => x.actor).count()
+    println(rddAct)
+
+    /**********Contare il numero di Event divisi per Type e Attore**********/
+    val dfEvento = new_dfEvent.select(($"type"), ($"actor"), count($"*").over(Window.partitionBy("type", "actor")) as "nEvent")
+    dfEvento.show()
+
+    val rddEvento = rddEvent.map(x => ((x.`type`, x.actor), 1L)).reduceByKey((e1,e2) => e1+e2)
+    rddEvento.take(10).foreach(println)
+
+    /**********Contare il numero di Event divisi per Type, Attore e Repo **********/
+    val dfEventos = new_dfEvent.select($"type", $"actor", $"repo", count($"*").over(Window.partitionBy($"type", $"actor", $"repo")) as "nEvent")
+    dfEventos.show()
+
+    val rddEventos = rddEvent.map(x => ((x.`type`, x.actor, x.repo), 1L)).reduceByKey((e1,e2) => e1+e2)
+    rddEventos.take(10).foreach(println)
+
   }
 }
