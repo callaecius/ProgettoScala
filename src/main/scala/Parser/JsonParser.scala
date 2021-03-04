@@ -45,6 +45,19 @@ object JsonParser {
     val rddAuthor = rddCommit.map(x => x.author).distinct()
     rddAuthor.take(10).foreach(println)
 
+    /**********Trovare i Singoli Repo**********/
+    val dfRepo = new_dfEvent.select("repo").distinct()
+    dfRepo.show()
+
+    val rddRepo = rddEvent.map(x => x.repo).distinct()
+    rddRepo.take(10).foreach(println)
+
+    /**********Trovare i vari tipi di evento Type**********/
+    val dfType = new_dfEvent.select("`type`").distinct()
+    dfType.show()
+
+    val rddType = rddEvent.map(x => x.`type`).distinct()
+    rddType.take(10).foreach(println)
 
   }
 }
