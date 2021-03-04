@@ -59,5 +59,19 @@ object JsonParser {
     val rddType = rddEvent.map(x => x.`type`).distinct()
     rddType.take(10).foreach(println)
 
+    /**********Contare il numero di Autori**********/
+    val dfAttore = new_dfEvent.select("actor").distinct().count()
+    println(dfAttore)
+
+    val rddAttore = rddEvent.map(x => x.actor).distinct().count()
+    println(rddAttore)
+
+    /**********Contare il numero di Repo**********/
+    val dfRepos = new_dfEvent.select("repo").distinct().count()
+    println(dfRepos)
+
+    val rddRepos = rddEvent.map(x => x.repo).distinct().count()
+    println(rddRepos)
+
   }
 }
